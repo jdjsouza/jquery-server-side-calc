@@ -1,0 +1,11 @@
+html,
+body {
+  margin: 0;
+}
+
+.appBar {
+  padding: 15px 25px;
+  background-color: aqua;
+  color: black;
+  text-align: center;
+}
