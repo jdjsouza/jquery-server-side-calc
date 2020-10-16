@@ -9,3 +9,12 @@ body {
   color: white;
   text-align: center;
 }
+
+.container {
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.button-clicked {
+  background-color: slategrey;
+}

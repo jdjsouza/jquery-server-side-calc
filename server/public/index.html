@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./stylesheets/style.css" />
-    <script src="vendors/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="scripts/client.js"></script>
     <title>Server Side Calculator</title>
   </head>
@@ -12,5 +12,20 @@
     <header class="appBar">
       <h1>Server Side Calculator</h1>
     </header>
+    <main class="container">
+      <div class="inputForm">
+        <input class="input js-input-1" type="number" placeholder="First Number" />
+        <button class="btn js-btn-math" name="add">+</button>
+        <button class="btn js-btn-math" name="minus">-</button>
+        <button class="btn js-btn-math" name="multiply">*</button>
+        <button class="btn js-btn-math" name="divide">/</button>
+        <input class="input js-input-2" type="number" placeholder="Second Number" />
+        <button class="btn js-btn-equal">=</button>
+        <button class="btn js-btn-clear">C</button>
+      </div>
+      <div>
+        <h2><span class="js-calc-result">0</span></h2>
+      </div>
+    </main>
   </body>
 </html>
