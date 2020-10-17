@@ -6,7 +6,7 @@ function onReady() {
   $('.js-btn-clear').on('click', mathClear);
   $('.js-btn-equal').on('click', mathEqual);
 
-  render();
+  getHistory();
 }
 
 function mathOperator() {
@@ -20,19 +20,28 @@ function mathClear() {
   $(this).parent().find('button').removeClass('button-clicked');
   $('.js-input-first').val('');
   $('.js-input-second').val('');
-  //   mathOp = null;
 }
 
 function mathEqual() {
-  let mathOp = $('.button-clicked').prop('name');
-  let firstNumber = $('.js-input-first').val();
-  let secondNumber = $('.js-input-second').val();
-  //   if (mathOp === undefined) {
-  //     alert('Please select a math operator.');
-  //     return;
-  //   }
+  let mathOp = null;
+  mathOp = $('.button-clicked').prop('name');
+
+  if (mathOp == null) {
+    alert('Please select a math operator.');
+    return;
+  }
+  if ($('.js-input-first').val() === '') {
+    alert('Please enter the first number.');
+    return;
+  }
+  if ($('.js-input-second').val() === '') {
+    alert('Please enter the second number.');
+    return;
+  }
+
+  let firstNumber = Number($('.js-input-first').val());
+  let secondNumber = Number($('.js-input-second').val());
   let inputs = [mathOp, firstNumber, secondNumber];
-  console.log(inputs);
 
   $.ajax({
     type: 'POST',
@@ -41,9 +50,8 @@ function mathEqual() {
   })
     .then(function (response) {
       console.log(response);
-
-      // GET -> results
-      render();
+      getResults();
+      getHistory();
     })
     .catch(function (err) {
       console.log(err);
@@ -57,7 +65,7 @@ function getResults() {
     url: '/results',
   })
     .then(function (response) {
-      render(response);
+      renderResult(response);
     })
     .catch(function (err) {
       console.log(err);
@@ -71,7 +79,7 @@ function getHistory() {
     url: '/results/history',
   })
     .then(function (response) {
-      render(response);
+      renderHistory(response);
     })
     .catch(function (err) {
       console.log(err);
@@ -79,36 +87,18 @@ function getHistory() {
     });
 }
 
-function renderResults(results) {
-  console.log(resultHistory);
-  const $results = $('.js-results');
-
-  $results.empty();
-  for (let i = 0; i < resultHistory.length; i++) {
-    const round = resultHistory[i];
-
-    $results.append(`<li>Round ${i + 1}</li>`);
-    for (let playerResults of round) {
-      $results.append(
-        `<li>${playerResults.name}, guessed ${playerResults.guess} <span>${playerResults.result}</span></li>`
-      );
-    }
+function renderResult(result) {
+  const jsCalc = $('.js-calc-result');
+  if (result === undefined) {
+    jsCalc.text('0');
   }
+  jsCalc.text(result);
 }
 
-function render(resultHistory) {
-  console.log(resultHistory);
-  const $results = $('.js-results');
-
-  $results.empty();
+function renderHistory(resultHistory) {
+  const jsResults = $('.js-results');
+  jsResults.empty();
   for (let i = 0; i < resultHistory.length; i++) {
-    const round = resultHistory[i];
-
-    $results.append(`<li>Round ${i + 1}</li>`);
-    for (let playerResults of round) {
-      $results.append(
-        `<li>${playerResults.name}, guessed ${playerResults.guess} <span>${playerResults.result}</span></li>`
-      );
-    }
+    jsResults.append(`<li>${resultHistory[i]}</li>`);
   }
 }

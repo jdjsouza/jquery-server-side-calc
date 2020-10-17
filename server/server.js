@@ -28,16 +28,20 @@ app.post('/math', (req, res) => {
     mathResult = Number(mathData[1]) / Number(mathData[2]);
     mathHistory.push(mathData[1] + ' / ' + mathData[2] + ' = ' + mathResult);
   }
-  console.log('Result', mathResult, 'History', mathHistory);
   res.sendStatus(200);
 });
 
-app.get('/results', (req, res) => {
-  res.send(mathResult);
-});
+// app.get('/results', (req, res) => {
+//   res.send(mathResult);
+// });
 
 app.get('/results/history', (req, res) => {
   res.send(mathHistory);
+});
+
+app.get('/results', (req, res) => {
+  const mathArray = [mathResult];
+  res.send(mathArray);
 });
 
 app.listen(PORT, () => {
