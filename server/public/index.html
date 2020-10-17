@@ -13,10 +13,10 @@
       <h1>Server Side Calculator</h1>
     </header>
     <main class="container">
-      <div class="inputForm">
+      <div class="inputForm js-input-form">
         <input class="input js-input-first" type="number" placeholder="First Number" />
         <button class="btn js-btn-math" name="add">+</button>
-        <button class="btn js-btn-math" name="minus">-</button>
+        <button class="btn js-btn-math" name="subtract">-</button>
         <button class="btn js-btn-math" name="multiply">*</button>
         <button class="btn js-btn-math" name="divide">/</button>
         <input class="input js-input-second" type="number" placeholder="Second Number" />
@@ -25,6 +25,9 @@
       </div>
       <div>
         <h2><span class="js-calc-result">0</span></h2>
+        <ul class="historyContainer">
+          <!-- History in <li> -->
+        </ul>
       </div>
     </main>
   </body>

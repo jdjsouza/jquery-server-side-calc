@@ -18,3 +18,9 @@ body {
 .button-clicked {
   background-color: slategrey;
 }
+
+.historyContainer {
+    margin: 0;
+    padding 0;
+    list-style: none;
+}
