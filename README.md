@@ -1,9 +1,14 @@
-# Project Name
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# Server Side Calculator
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+This is a server side math calculator for addition, subtraction, multiplication and division.
+As an added bonus, it saves the history of your calculations so you can see what you've done so far.
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+### Prerequisites
+
+Need NPM so you can install Node and Express.
+
+## Usage
+
+Put a number in each input field, select your math operator by the button and click equal to get the results.

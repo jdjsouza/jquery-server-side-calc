@@ -13,11 +13,13 @@ app.use(bodyParser.json());
 app.use(express.static('server/public'));
 
 app.post('/math', (req, res) => {
-  mathData = req.body.math;
-  //  array ['operator', num1, num2]
+  //  array received {math: ['operator', num1, num2] }
+  mathData = req.body.math; // turn array into ['operator', 'firstNumber', 'secondNumber']
+
+  // if statements to do the calculation based on the operator sent
   if (mathData[0] === 'add') {
     mathResult = Number(mathData[1]) + Number(mathData[2]);
-    mathHistory.push(mathData[1] + ' + ' + mathData[2] + ' = ' + mathResult);
+    mathHistory.push(mathData[1] + ' + ' + mathData[2] + ' = ' + mathResult); // add to history array as a string
   } else if (mathData[0] === 'subtract') {
     mathResult = Number(mathData[1]) - Number(mathData[2]);
     mathHistory.push(mathData[1] + ' - ' + mathData[2] + ' = ' + mathResult);
@@ -28,19 +30,15 @@ app.post('/math', (req, res) => {
     mathResult = Number(mathData[1]) / Number(mathData[2]);
     mathHistory.push(mathData[1] + ' / ' + mathData[2] + ' = ' + mathResult);
   }
-  res.sendStatus(200);
+  res.sendStatus(200); // send Okay
 });
-
-// app.get('/results', (req, res) => {
-//   res.send(mathResult);
-// });
 
 app.get('/results/history', (req, res) => {
   res.send(mathHistory);
 });
 
 app.get('/results', (req, res) => {
-  const mathArray = [mathResult];
+  const mathArray = [mathResult]; // get can't send a number, wrap the number in an array
   res.send(mathArray);
 });
 
