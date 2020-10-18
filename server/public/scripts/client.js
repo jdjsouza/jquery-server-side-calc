@@ -1,5 +1,4 @@
 $(document).ready(onReady);
-// let mathOp;
 
 function onReady() {
   $('.js-btn-math').on('click', mathOperator);
