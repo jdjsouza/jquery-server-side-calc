@@ -39,10 +39,17 @@ function mathEqual() {
     alert('Please enter the second number.');
     return; // breaks out of the function intentionally
   }
+
   // make sure the number order is passed correctly
   let firstNumber = Number($('.js-input-first').val());
   let secondNumber = Number($('.js-input-second').val());
   let inputs = [mathOp, firstNumber, secondNumber]; // array structure for doing the math on the server
+
+  // can't divide by 0
+  if ((mathOp === 'divide' && firstNumber === 0) || (mathOp === 'divide' && secondNumber === 0)) {
+    alert('This calculator cannot divide by 0, please seek a mathematician for assistance.');
+    return; // breaks out of the function intentionally
+  }
 
   //   console.log('array inputs before sending', inputs);
 
